@@ -13,7 +13,7 @@ import axios from 'axios';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 //import Constants from 'expo-constants';
 
-function Item({id, title}) {
+function Item({id, title, navigation}) {
   return (
     <TouchableOpacity
       onPress={() => {
@@ -22,6 +22,8 @@ function Item({id, title}) {
           .then(response => {
             alert(response.data);
           });
+        // eslint-disable-next-line no-undef
+        navigation.navigate('Details');
       }}
       style={[
         styles.item,
@@ -55,7 +57,11 @@ class List extends Component {
           <FlatList
             data={this.props.news}
             renderItem={({item}) => (
-              <Item id={item.id} title={item.title.rendered} />
+              <Item
+                id={item.id}
+                title={item.title.rendered}
+                navigation={this.props.navigation}
+              />
             )}
             keyExtractor={item => item.id}
           />

@@ -8,16 +8,25 @@
 
 import React, {Component, Fragment} from 'react';
 import List from './components/List';
+import Content from './components/Content';
 import store from './store';
 import {Provider} from 'react-redux';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+const Stack = createStackNavigator();
 class App extends Component {
   render() {
     return (
-      <Fragment>
-        <Provider store={store}>
-          <List />
-        </Provider>
-      </Fragment>
+      <NavigationContainer>
+        <Fragment>
+          <Provider store={store}>
+            <Stack.Navigator>
+              <Stack.Screen name="Home" component={List} />
+              <Stack.Screen name="Details" component={Content} />
+            </Stack.Navigator>
+          </Provider>
+        </Fragment>
+      </NavigationContainer>
     );
   }
 }

@@ -11,11 +11,18 @@
         "commitmsg": "commitlint -E GIT_PARAMS"
     },
     "dependencies": {
+        "@react-native-community/masked-view": "^0.1.6",
+        "@react-navigation/native": "^5.0.5",
+        "@react-navigation/stack": "^5.0.5",
         "axios": "^0.19.2",
         "expo-constants": "^8.0.0",
         "immutable": "^4.0.0-rc.12",
         "react": "16.9.0",
         "react-native": "0.61.5",
+        "react-native-gesture-handler": "^1.6.0",
+        "react-native-reanimated": "^1.7.0",
+        "react-native-safe-area-context": "^0.7.3",
+        "react-native-screens": "^2.0.0-beta.6",
         "react-redux": "^7.2.0",
         "redux": "^4.0.5",
         "redux-immutable": "^4.0.0",
