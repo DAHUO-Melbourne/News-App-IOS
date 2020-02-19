@@ -6,28 +6,21 @@ import {
   TouchableOpacity,
   FlatList,
   Image,
-  ScrollView,
 } from 'react-native';
 import {connect} from 'react-redux';
 import axios from 'axios';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-//import Constants from 'expo-constants';
 
-function Item({id, title, navigation}) {
+function Item({id, title, navigation, transferNewsID}) {
   return (
     <TouchableOpacity
       onPress={() => {
-        axios
-          .get('https://staging.allfin.com/wordpress/wp-json/wp/v2/posts/' + id)
-          .then(response => {
-            alert(response.data);
-          });
-        // eslint-disable-next-line no-undef
+        transferNewsID(id);
         navigation.navigate('Details');
       }}
       style={[
         styles.item,
-        // eslint-disable-next-line react-native/no-inline-styles
+        // eslint-disable-next-line eslint-comments/no-unused-disable
       ]}>
       <Image style={styles.stretch} />
       <Text style={styles.title}>{title}</Text>
@@ -47,25 +40,20 @@ class List extends Component {
   }
 
   render() {
-    alert(this.props.news);
     return (
       <SafeAreaView style={styles.container}>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}
-          elevation={5}>
-          <FlatList
-            data={this.props.news}
-            renderItem={({item}) => (
-              <Item
-                id={item.id}
-                title={item.title.rendered}
-                navigation={this.props.navigation}
-              />
-            )}
-            keyExtractor={item => item.id}
-          />
-        </ScrollView>
+        <FlatList
+          data={this.props.news}
+          renderItem={({item}) => (
+            <Item
+              id={item.id}
+              title={item.title.rendered}
+              navigation={this.props.navigation}
+              transferNewsID={this.props.transferNewsID}
+            />
+          )}
+          keyExtractor={item => item.id}
+        />
       </SafeAreaView>
     );
   }
@@ -109,10 +97,7 @@ const styles = StyleSheet.create({
     textAlign: 'right',
   },
   container: {
-    flex: 1,
     marginTop: 20,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
   },
   item: {
     backgroundColor: '#f9c2ff',
@@ -138,10 +123,24 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    updateDetailsData(data) {
+      const action = {
+        type: 'UPDATE_DETAILS_DATA',
+        data: data,
+      };
+      dispatch(action);
+    },
     initListData(data) {
       const action = {
         type: 'INIT_LIST_DATA',
         data: data,
+      };
+      dispatch(action);
+    },
+    transferNewsID(id) {
+      const action = {
+        type: 'UPDATE_NEWS_ID',
+        data: id,
       };
       dispatch(action);
     },
