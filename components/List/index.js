@@ -11,21 +11,37 @@ import {connect} from 'react-redux';
 import axios from 'axios';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
-function Item({id, title, navigation, transferNewsID}) {
-  return (
-    <TouchableOpacity
-      onPress={() => {
-        transferNewsID(id);
-        navigation.navigate('Details');
-      }}
-      style={[
-        styles.item,
-        // eslint-disable-next-line eslint-comments/no-unused-disable
-      ]}>
-      <Image style={styles.stretch} />
-      <Text style={styles.title}>{title}</Text>
-    </TouchableOpacity>
-  );
+function Item({id, title, navigation, transferNewsID, src}) {
+  if (src != null) {
+    return (
+      <TouchableOpacity
+        onPress={() => {
+          transferNewsID(id);
+          navigation.navigate('Details');
+        }}
+        style={[
+          styles.item,
+          // eslint-disable-next-line eslint-comments/no-unused-disable
+        ]}>
+        <Image style={styles.stretch} source={{uri: src}} />
+        <Text style={styles.title}>{title}</Text>
+      </TouchableOpacity>
+    );
+  } else
+    return (
+      <TouchableOpacity
+        onPress={() => {
+          transferNewsID(id);
+          navigation.navigate('Details');
+        }}
+        style={[
+          styles.item,
+          // eslint-disable-next-line eslint-comments/no-unused-disable
+        ]}>
+        <Image style={styles.stretch} source={{uri: ''}} />
+        <Text style={styles.title}>{title}</Text>
+      </TouchableOpacity>
+    );
 }
 
 class List extends Component {
@@ -48,6 +64,7 @@ class List extends Component {
             <Item
               id={item.id}
               title={item.title.rendered}
+              src={item.type_img}
               navigation={this.props.navigation}
               transferNewsID={this.props.transferNewsID}
             />
@@ -100,18 +117,24 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   item: {
-    backgroundColor: '#f9c2ff',
+    backgroundColor: 'white',
     padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
+    flex: 1,
+    flexDirection: 'row',
+    borderBottomColor: 'gray',
+    borderBottomWidth: 1,
   },
   title: {
-    fontSize: 32,
+    flex: 1,
+    fontSize: 20,
+    marginRight: 20,
+    flexWrap: 'wrap',
   },
   stretch: {
     width: 50,
     height: 50,
     resizeMode: 'stretch',
+    marginRight: 20,
   },
 });
 
