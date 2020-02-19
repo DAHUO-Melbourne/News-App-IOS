@@ -14,7 +14,7 @@ class Content extends Component {
       // eslint-disable-next-line react-native/no-inline-styles
       <ScrollView style={styles.content}>
         <Text style={styles.title}>{this.props.title}</Text>
-        <Text>{this.props.date}</Text>
+        <Text style={styles.time}>{this.props.date}</Text>
         <HTML
           html={this.props.content}
           ignoredStyles={['height', 'width']}
@@ -65,6 +65,10 @@ const mapDispatchToProps = dispatch => {
   };
 };
 const styles = StyleSheet.create({
+  time: {
+    marginBottom: 5,
+    color: 'gray',
+  },
   content: {
     flex: 1,
     paddingLeft: 20,
@@ -73,6 +77,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 28,
+    marginBottom: 20,
   },
   HTMLView: {
     fontWeight: '300',
