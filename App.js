@@ -13,10 +13,18 @@ import store from './store';
 import {Provider} from 'react-redux';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import {Button} from 'react-native';
+import {Button, Slider, StyleSheet} from 'react-native';
 const Stack = createStackNavigator();
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      pressStatus: true,
+    };
+    this.handlePress = this.handlePress.bind(this);
+  }
   render() {
+    alert('MMM');
     return (
       <NavigationContainer>
         <Fragment>
@@ -30,20 +38,70 @@ class App extends Component {
                   headerTitle: 'Details',
                   headerRight: () => (
                     <Button
-                      onPress={() => alert('This is a button!')}
+                      onPress={this.handlePress}
                       title="A"
                       color="#000"
-                      style={{marginRight:10}}
+                      // eslint-disable-next-line react-native/no-inline-styles
+                      style={{marginRight: 10}}
                     />
                   ),
                 }}
               />
             </Stack.Navigator>
+            <Slider
+              step={1}
+              maximumValue={100}
+              onValueChange={() => alert('AAA')}
+              value={10}
+              // eslint-disable-next-line react-native/no-inline-styles
+              style={
+                this.state.pressStatus ? styles.sliderShow : styles.sliderHide
+              }
+            />
           </Provider>
         </Fragment>
       </NavigationContainer>
     );
   }
+  handlePress() {
+    if (this.state.pressStatus === true) {
+      this.setState(() => ({
+        pressStatus: false,
+      }));
+    } else {
+      this.setState(() => ({
+        pressStatus: true,
+      }));
+    }
+//    alert(this.state.pressStatus);
+  }
 }
+
+const styles = StyleSheet.create({
+  sliderShow: {
+    position: 'relative',
+    bottom: 300,
+    backgroundColor: 'black',
+    marginLeft: 20,
+    marginRight: 20,
+    opacity: 0.5,
+    display: 'flex',
+  },
+  sliderHide: {
+    position: 'relative',
+    bottom: 300,
+    backgroundColor: 'black',
+    marginLeft: 20,
+    marginRight: 20,
+    opacity: 0.5,
+    display: 'none',
+  },
+  viewShow: {
+    display: 'flex',
+  },
+  viewHide: {
+    display: 'none',
+  },
+});
 
 export default App;

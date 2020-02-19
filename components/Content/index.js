@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import {Text, ScrollView, StyleSheet, Dimensions, Slider} from 'react-native';
 //import {WebView} from 'react-native-webview';
 import HTML from 'react-native-render-html';
@@ -9,15 +9,17 @@ class Content extends Component {
   render() {
     return (
       // eslint-disable-next-line react-native/no-inline-styles
-      <ScrollView style={styles.content}>
-        <Text style={styles.title}>{this.props.title}</Text>
-        <Text style={styles.time}>{this.props.date}</Text>
-        <HTML
-          html={this.props.content}
-          ignoredStyles={['height', 'width']}
-          imagesMaxWidth={Dimensions.get('window').width - 40}
-        />
-      </ScrollView>
+      <Fragment>
+        <ScrollView style={styles.content}>
+          <Text style={styles.title}>{this.props.title}</Text>
+          <Text style={styles.time}>{this.props.date}</Text>
+          <HTML
+            html={this.props.content}
+            ignoredStyles={['height', 'width']}
+            imagesMaxWidth={Dimensions.get('window').width - 40}
+          />
+        </ScrollView>
+      </Fragment>
     );
   }
   componentDidMount() {
@@ -38,6 +40,7 @@ const mapStateToProps = state => {
     id: state.getIn(['Content', 'id']),
     date: state.getIn(['Content', 'date']),
     content: state.getIn(['Content', 'content']),
+    sliderBarDisplay: state.getIn(['Content', 'bar']),
   };
 };
 
@@ -62,6 +65,15 @@ const mapDispatchToProps = dispatch => {
   };
 };
 const styles = StyleSheet.create({
+  slider: {
+    position: 'relative',
+    bottom: 300,
+    backgroundColor: 'black',
+    marginLeft: 20,
+    marginRight: 20,
+    opacity: 0.5,
+    display: 'flex',
+  },
   time: {
     marginBottom: 5,
     color: 'gray',

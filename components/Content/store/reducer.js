@@ -4,6 +4,7 @@ const defaultState = fromJS({
   content: '<p>loading</p>',
   date: '',
   id: '',
+  bar: 'none',
 });
 export default (state = defaultState, action) => {
   switch (action.type) {
