@@ -1,15 +1,20 @@
 import React, {Component} from 'react';
-import {View, Text, ScrollView} from 'react-native';
+import {View, Text, ScrollView, StyleSheet, Dimensions} from 'react-native';
+//import {WebView} from 'react-native-webview';
+import HTML from 'react-native-render-html';
 import {connect} from 'react-redux';
 import axios from 'axios';
+
 class Content extends Component {
   render() {
     return (
-      <ScrollView contentInsetAdjustmentBehavior="automatic">
-        <View>
-          <Text>{this.props.title}</Text>
-          <Text>{this.props.content}</Text>
-        </View>
+      // eslint-disable-next-line react-native/no-inline-styles
+      <ScrollView style={{flex: 1}}>
+        <Text>{this.props.title}</Text>
+        <HTML
+          html={this.props.content}
+          imagesWidth={Dimensions.get('window').width}
+        />
       </ScrollView>
     );
   }
@@ -52,6 +57,13 @@ const mapDispatchToProps = dispatch => {
     },
   };
 };
+const styles = StyleSheet.create({
+  HTMLView: {
+    fontWeight: '300',
+    color: '#FF3366',
+  },
+});
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
