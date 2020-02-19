@@ -13,6 +13,7 @@ import store from './store';
 import {Provider} from 'react-redux';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import {Button} from 'react-native';
 const Stack = createStackNavigator();
 class App extends Component {
   render() {
@@ -22,7 +23,21 @@ class App extends Component {
           <Provider store={store}>
             <Stack.Navigator>
               <Stack.Screen name="Home" component={List} />
-              <Stack.Screen name="Details" component={Content} />
+              <Stack.Screen
+                name="Details"
+                component={Content}
+                options={{
+                  headerTitle: 'Details',
+                  headerRight: () => (
+                    <Button
+                      onPress={() => alert('This is a button!')}
+                      title="A"
+                      color="#000"
+                      style={{marginRight:10}}
+                    />
+                  ),
+                }}
+              />
             </Stack.Navigator>
           </Provider>
         </Fragment>

@@ -1,12 +1,9 @@
 import React, {Component} from 'react';
-import {Text, ScrollView, StyleSheet, Dimensions} from 'react-native';
+import {Text, ScrollView, StyleSheet, Dimensions, Slider} from 'react-native';
 //import {WebView} from 'react-native-webview';
 import HTML from 'react-native-render-html';
 import {connect} from 'react-redux';
 import axios from 'axios';
-
-const htmlContent =
-  '<h1>This HTML snippet is now rendered with native components !</h1><h2>Enjoy a webview-free and blazing fast application</h2><img class=\"aligncenter\" src=\"https://www.allfin.com/u/cms/www/201811/13142949sf02.jpg\" alt=\"\" width=\"600\" height=\"408\" /><em style="textAlign: center;">Look at how happy this native cat is</em>';
 
 class Content extends Component {
   render() {
