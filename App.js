@@ -50,7 +50,9 @@ class App extends Component {
             <Slider
               step={1}
               maximumValue={100}
-              onValueChange={() => alert('AAA')}
+              onSlidingComplete={value => {
+                alert(value);
+              }}
               value={10}
               // eslint-disable-next-line react-native/no-inline-styles
               style={
@@ -72,7 +74,6 @@ class App extends Component {
         pressStatus: true,
       }));
     }
-//    alert(this.state.pressStatus);
   }
 }
 
