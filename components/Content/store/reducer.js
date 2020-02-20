@@ -9,6 +9,8 @@ const defaultState = fromJS({
 });
 export default (state = defaultState, action) => {
   switch (action.type) {
+    case 'UPDATE_FONT_SIZE':
+      return state.set('font', action.font);
     case 'UPDATE_DETAILS_DATA':
       return state.merge({
         title: action.title,

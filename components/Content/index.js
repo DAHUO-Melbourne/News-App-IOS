@@ -10,8 +10,7 @@ class Content extends Component {
     super(props);
   }
   render() {
-    //    alert(this.props.extraData.value);
-//    alert(this.props.font);
+    alert(this.props.font);
     return (
       // eslint-disable-next-line react-native/no-inline-styles
       <Fragment>
@@ -24,8 +23,6 @@ class Content extends Component {
             imagesMaxWidth={Dimensions.get('window').width - 40}
             tagsStyles={{
               p: {
-                fontStyle: 'italic',
-                color: 'grey',
                 fontSize: this.props.font,
               },
             }}
@@ -71,10 +68,10 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     updateFontSize(data) {
-      alert(data);
+      //      alert(data);
       const action = {
         type: 'UPDATE_FONT_SIZE',
-        font: 10,
+        font: data,
       };
       dispatch(action);
     },
