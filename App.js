@@ -20,10 +20,12 @@ class App extends Component {
     super(props);
     this.state = {
       pressStatus: false,
+      value: 10,
     };
     this.handlePress = this.handlePress.bind(this);
   }
   render() {
+//    alert('MMM');
     return (
       <NavigationContainer>
         <Fragment>
@@ -32,7 +34,7 @@ class App extends Component {
               <Stack.Screen name="Home" component={List} />
               <Stack.Screen
                 name="Details"
-                component={Content}
+                initialParams={{value: this.state.value}}
                 options={{
                   headerTitle: 'Details',
                   headerRight: () => (
@@ -44,22 +46,27 @@ class App extends Component {
                       style={{marginRight: 10}}
                     />
                   ),
-                }}
-              />
+                }}>
+                {props => (
+                  <Content {...props} extraData={{value: this.state.value}} />
+                )}
+              </Stack.Screen>
             </Stack.Navigator>
-            <Slider
-              step={1}
-              maximumValue={100}
-              onSlidingComplete={value => {
-                alert(value);
-              }}
-              value={10}
-              // eslint-disable-next-line react-native/no-inline-styles
-              style={
-                this.state.pressStatus ? styles.sliderShow : styles.sliderHide
-              }
-            />
           </Provider>
+          <Slider
+            step={1}
+            maximumValue={100}
+            onSlidingComplete={value => {
+              this.setState(() => ({
+                value: value,
+              }));
+            }}
+            value={10}
+            // eslint-disable-next-line react-native/no-inline-styles
+            style={
+              this.state.pressStatus ? styles.sliderShow : styles.sliderHide
+            }
+          />
         </Fragment>
       </NavigationContainer>
     );
@@ -74,6 +81,11 @@ class App extends Component {
         pressStatus: true,
       }));
     }
+  }
+  handleMove(value) {
+    this.setState(() => ({
+      value: value,
+    }));
   }
 }
 
@@ -94,12 +106,6 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginRight: 20,
     opacity: 0.5,
-    display: 'none',
-  },
-  viewShow: {
-    display: 'flex',
-  },
-  viewHide: {
     display: 'none',
   },
 });

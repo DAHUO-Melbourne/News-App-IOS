@@ -1,12 +1,16 @@
 import React, {Component, Fragment} from 'react';
-import {Text, ScrollView, StyleSheet, Dimensions, View} from 'react-native';
+import {Text, ScrollView, StyleSheet, Dimensions, Slider} from 'react-native';
 //import {WebView} from 'react-native-webview';
 import HTML from 'react-native-render-html';
 import {connect} from 'react-redux';
 import axios from 'axios';
 
 class Content extends Component {
+  constructor(props) {
+    super(props);
+  }
   render() {
+    alert(this.props.extraData.value);
     return (
       // eslint-disable-next-line react-native/no-inline-styles
       <Fragment>
@@ -73,7 +77,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 const styles = StyleSheet.create({
-  slider: {
+  sliderShow: {
     position: 'relative',
     bottom: 300,
     backgroundColor: 'black',
@@ -81,6 +85,15 @@ const styles = StyleSheet.create({
     marginRight: 20,
     opacity: 0.5,
     display: 'flex',
+  },
+  sliderHide: {
+    position: 'relative',
+    bottom: 300,
+    backgroundColor: 'black',
+    marginLeft: 20,
+    marginRight: 20,
+    opacity: 0.5,
+    display: 'none',
   },
   time: {
     marginBottom: 5,
