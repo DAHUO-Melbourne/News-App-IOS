@@ -19,12 +19,11 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pressStatus: true,
+      pressStatus: false,
     };
     this.handlePress = this.handlePress.bind(this);
   }
   render() {
-    alert('MMM');
     return (
       <NavigationContainer>
         <Fragment>

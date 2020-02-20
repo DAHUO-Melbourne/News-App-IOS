@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import {Text, ScrollView, StyleSheet, Dimensions, Slider} from 'react-native';
+import {Text, ScrollView, StyleSheet, Dimensions, View} from 'react-native';
 //import {WebView} from 'react-native-webview';
 import HTML from 'react-native-render-html';
 import {connect} from 'react-redux';
@@ -17,6 +17,14 @@ class Content extends Component {
             html={this.props.content}
             ignoredStyles={['height', 'width']}
             imagesMaxWidth={Dimensions.get('window').width - 40}
+            tagsStyles={{
+              p: {
+                fontStyle: 'italic',
+                color: 'grey',
+                fontSize: 20,
+              },
+            }}
+            // eslint-disable-next-line react-native/no-inline-styles
           />
         </ScrollView>
       </Fragment>
