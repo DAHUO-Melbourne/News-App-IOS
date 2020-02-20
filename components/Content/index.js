@@ -10,7 +10,8 @@ class Content extends Component {
     super(props);
   }
   render() {
-    alert(this.props.extraData.value);
+    //    alert(this.props.extraData.value);
+//    alert(this.props.font);
     return (
       // eslint-disable-next-line react-native/no-inline-styles
       <Fragment>
@@ -25,12 +26,22 @@ class Content extends Component {
               p: {
                 fontStyle: 'italic',
                 color: 'grey',
-                fontSize: 20,
+                fontSize: this.props.font,
               },
             }}
             // eslint-disable-next-line react-native/no-inline-styles
           />
         </ScrollView>
+        <Slider
+          step={1}
+          maximumValue={100}
+          onSlidingComplete={value => this.props.updateFontSize(value)}
+          value={10}
+          // eslint-disable-next-line react-native/no-inline-styles
+          style={
+            this.props.extraData.value ? styles.sliderShow : styles.sliderHide
+          }
+        />
       </Fragment>
     );
   }
@@ -53,11 +64,20 @@ const mapStateToProps = state => {
     date: state.getIn(['Content', 'date']),
     content: state.getIn(['Content', 'content']),
     sliderBarDisplay: state.getIn(['Content', 'bar']),
+    font: state.getIn(['Content', 'font']),
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
+    updateFontSize(data) {
+      alert(data);
+      const action = {
+        type: 'UPDATE_FONT_SIZE',
+        font: 10,
+      };
+      dispatch(action);
+    },
     updateDetailsData(data) {
       const action = {
         type: 'UPDATE_DETAILS_DATA',

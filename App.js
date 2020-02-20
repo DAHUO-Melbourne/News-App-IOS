@@ -48,25 +48,14 @@ class App extends Component {
                   ),
                 }}>
                 {props => (
-                  <Content {...props} extraData={{value: this.state.value}} />
+                  <Content
+                    {...props}
+                    extraData={{value: this.state.pressStatus}}
+                  />
                 )}
               </Stack.Screen>
             </Stack.Navigator>
           </Provider>
-          <Slider
-            step={1}
-            maximumValue={100}
-            onSlidingComplete={value => {
-              this.setState(() => ({
-                value: value,
-              }));
-            }}
-            value={10}
-            // eslint-disable-next-line react-native/no-inline-styles
-            style={
-              this.state.pressStatus ? styles.sliderShow : styles.sliderHide
-            }
-          />
         </Fragment>
       </NavigationContainer>
     );
