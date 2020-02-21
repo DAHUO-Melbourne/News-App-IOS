@@ -1,12 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import {
-  Text,
-  ScrollView,
-  StyleSheet,
-  Dimensions,
-  Slider,
-  View,
-} from 'react-native';
+import {Text, ScrollView, StyleSheet, Dimensions, Slider} from 'react-native';
 //import {WebView} from 'react-native-webview';
 import HTML from 'react-native-render-html';
 import {connect} from 'react-redux';
@@ -19,13 +12,6 @@ class Content extends Component {
     super(props);
   }
   render() {
-    alert(this.props.font);
-    const stylesHTML = {
-      container: {
-        // eslint-disable-next-line no-undef
-        fontSize: this.props.font,
-      },
-    };
     return (
       // eslint-disable-next-line react-native/no-inline-styles
       <Fragment>

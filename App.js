@@ -25,7 +25,6 @@ class App extends Component {
     this.handlePress = this.handlePress.bind(this);
   }
   render() {
-//    alert('MMM');
     return (
       <NavigationContainer>
         <Fragment>
