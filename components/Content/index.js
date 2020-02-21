@@ -26,6 +26,10 @@ class Content extends Component {
               p: {
                 fontSize: this.props.font,
               },
+              img: {
+                marginTop: 20,
+                marginBottom: 20,
+              },
             }}
             // eslint-disable-next-line react-native/no-inline-styles
           />
@@ -47,6 +51,20 @@ class Content extends Component {
       </Fragment>
     );
   }
+
+  componentWillMount() {
+    const data = {
+      title: {
+        rendered: 'loading',
+      },
+      content: {
+        rendered: 'loading',
+      },
+      date: 'loading',
+    };
+    this.props.updateDetailsData(data);
+  }
+
   componentDidMount() {
     axios
       .get(
