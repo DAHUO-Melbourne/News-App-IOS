@@ -1,4 +1,4 @@
-import * as contentConstants from './store/constants';
+import * as contentActionsCreators from './store/actionCreator';
 import React, {Component, Fragment} from 'react';
 import {Text, ScrollView, StyleSheet, Dimensions, Slider} from 'react-native';
 import HTML from 'react-native-render-html';
@@ -96,20 +96,10 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     updateFontSize(data) {
-      const action = {
-        type: contentConstants.UPDATE_FONT_SIZE,
-        font: data,
-      };
-      dispatch(action);
+      dispatch(contentActionsCreators.updateFontSize(data));
     },
     updateDetailsData(data) {
-      const action = {
-        type: contentConstants.UPDATE_DETAILS_DATA,
-        title: data.title.rendered,
-        content: data.content.rendered,
-        date: data.date,
-      };
-      dispatch(action);
+      dispatch(contentActionsCreators.updateDetailsDate(data));
     },
   };
 };
