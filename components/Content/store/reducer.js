@@ -1,3 +1,4 @@
+import * as constants from './constants';
 import {fromJS} from 'immutable';
 const defaultState = fromJS({
   title: 'loading',
@@ -9,15 +10,15 @@ const defaultState = fromJS({
 });
 export default (state = defaultState, action) => {
   switch (action.type) {
-    case 'UPDATE_FONT_SIZE':
+    case constants.UPDATE_FONT_SIZE:
       return state.set('font', action.font);
-    case 'UPDATE_DETAILS_DATA':
+    case constants.UPDATE_DETAILS_DATA:
       return state.merge({
         title: action.title,
         content: action.content,
         date: action.date,
       });
-    case 'UPDATE_NEWS_ID':
+    case constants.UPDATE_NEWS_ID:
       return state.set('id', action.data);
     default:
       return state;

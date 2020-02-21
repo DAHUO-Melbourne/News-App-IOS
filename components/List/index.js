@@ -1,3 +1,5 @@
+import * as listConstants from './store/constants';
+import * as contentConstants from '../Content/store/constants';
 import React, {Component} from 'react';
 import {
   SafeAreaView,
@@ -141,23 +143,16 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateDetailsData(data) {
-      const action = {
-        type: 'UPDATE_DETAILS_DATA',
-        data: data,
-      };
-      dispatch(action);
-    },
     initListData(data) {
       const action = {
-        type: 'INIT_LIST_DATA',
+        type: listConstants.INIT_LIST_DATA,
         data: data,
       };
       dispatch(action);
     },
     transferNewsID(id) {
       const action = {
-        type: 'UPDATE_NEWS_ID',
+        type: contentConstants.UPDATE_NEWS_ID,
         data: id,
       };
       dispatch(action);
