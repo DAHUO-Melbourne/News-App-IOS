@@ -38,7 +38,7 @@ class Content extends Component {
             this.props.navigation.goBack();
             this.props.navigation.navigate('Details');
           }}
-          value={10}
+          value={this.props.font}
           // eslint-disable-next-line react-native/no-inline-styles
           style={
             this.props.extraData.value ? styles.sliderShow : styles.sliderHide
