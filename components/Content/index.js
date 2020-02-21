@@ -1,9 +1,18 @@
 import React, {Component, Fragment} from 'react';
-import {Text, ScrollView, StyleSheet, Dimensions, Slider} from 'react-native';
+import {
+  Text,
+  ScrollView,
+  StyleSheet,
+  Dimensions,
+  Slider,
+  View,
+} from 'react-native';
 //import {WebView} from 'react-native-webview';
 import HTML from 'react-native-render-html';
 import {connect} from 'react-redux';
 import axios from 'axios';
+import {WebView} from 'react-native-webview';
+import HTMLView from 'react-native-htmlview';
 
 class Content extends Component {
   constructor(props) {
@@ -11,6 +20,12 @@ class Content extends Component {
   }
   render() {
     alert(this.props.font);
+    const stylesHTML = {
+      container: {
+        // eslint-disable-next-line no-undef
+        fontSize: this.props.font,
+      },
+    };
     return (
       // eslint-disable-next-line react-native/no-inline-styles
       <Fragment>
@@ -32,7 +47,11 @@ class Content extends Component {
         <Slider
           step={1}
           maximumValue={100}
-          onSlidingComplete={value => this.props.updateFontSize(value)}
+          onSlidingComplete={value => {
+            this.props.updateFontSize(value);
+            this.props.navigation.goBack();
+            this.props.navigation.navigate('Details');
+          }}
           value={10}
           // eslint-disable-next-line react-native/no-inline-styles
           style={
@@ -93,6 +112,7 @@ const mapDispatchToProps = dispatch => {
     },
   };
 };
+
 const styles = StyleSheet.create({
   sliderShow: {
     position: 'relative',
@@ -129,6 +149,13 @@ const styles = StyleSheet.create({
   HTMLView: {
     fontWeight: '300',
     color: '#FF3366',
+  },
+  p: {
+    color: '#FF3366',
+    //    fontSize: this.props.font,
+  },
+  a: {
+    color: 'gray',
   },
 });
 
