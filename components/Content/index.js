@@ -14,7 +14,12 @@ class Content extends Component {
       <Fragment>
         <ScrollView style={styles.content}>
           <Text style={styles.title}>{this.props.title}</Text>
-          <Text style={styles.time}>{this.props.date}</Text>
+          <Text style={styles.time}>
+            {this.props.date
+              .replace('-', '年')
+              .replace('-', '月')
+              .replace('T', '日')}
+          </Text>
           <SafeAreaView style={styles.safeView}>
             <HTML
               html={this.props.content}
