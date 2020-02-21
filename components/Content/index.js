@@ -14,12 +14,7 @@ class Content extends Component {
       <Fragment>
         <ScrollView style={styles.content}>
           <Text style={styles.title}>{this.props.title}</Text>
-          <Text style={styles.time}>
-            {this.props.date
-              .replace('-', '年')
-              .replace('-', '月')
-              .replace('T', '日')}
-          </Text>
+          <Text style={styles.time}>{this.timeFormated(this.props.date)}</Text>
           <SafeAreaView style={styles.safeView}>
             <HTML
               html={this.props.content}
@@ -54,7 +49,14 @@ class Content extends Component {
     );
   }
 
-  UNSAFE_componentWillMount() {
+  timeFormated(dateString) {
+    return dateString
+      .replace('-', '年')
+      .replace('-', '月')
+      .replace('T', '日');
+  }
+
+  componentWillMount() {
     const data = {
       title: {
         rendered: 'loading',
