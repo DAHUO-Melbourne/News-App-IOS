@@ -13,7 +13,7 @@ import store from './store';
 import {Provider} from 'react-redux';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import {Button, Slider, StyleSheet} from 'react-native';
+import {Button} from 'react-native';
 const Stack = createStackNavigator();
 class App extends Component {
   constructor(props) {
@@ -76,26 +76,5 @@ class App extends Component {
     }));
   }
 }
-
-const styles = StyleSheet.create({
-  sliderShow: {
-    position: 'relative',
-    bottom: 300,
-    backgroundColor: 'black',
-    marginLeft: 20,
-    marginRight: 20,
-    opacity: 0.5,
-    display: 'flex',
-  },
-  sliderHide: {
-    position: 'relative',
-    bottom: 300,
-    backgroundColor: 'black',
-    marginLeft: 20,
-    marginRight: 20,
-    opacity: 0.5,
-    display: 'none',
-  },
-});
 
 export default App;

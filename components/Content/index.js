@@ -1,11 +1,8 @@
 import React, {Component, Fragment} from 'react';
 import {Text, ScrollView, StyleSheet, Dimensions, Slider} from 'react-native';
-//import {WebView} from 'react-native-webview';
 import HTML from 'react-native-render-html';
 import {connect} from 'react-redux';
 import axios from 'axios';
-import {WebView} from 'react-native-webview';
-import HTMLView from 'react-native-htmlview';
 
 class Content extends Component {
   constructor(props) {
@@ -13,7 +10,6 @@ class Content extends Component {
   }
   render() {
     return (
-      // eslint-disable-next-line react-native/no-inline-styles
       <Fragment>
         <ScrollView style={styles.content}>
           <Text style={styles.title}>{this.props.title}</Text>
@@ -31,7 +27,6 @@ class Content extends Component {
                 marginBottom: 20,
               },
             }}
-            // eslint-disable-next-line react-native/no-inline-styles
           />
         </ScrollView>
         <Slider
@@ -43,7 +38,6 @@ class Content extends Component {
             this.props.navigation.navigate('Details');
           }}
           value={this.props.font}
-          // eslint-disable-next-line react-native/no-inline-styles
           style={
             this.props.extraData.value ? styles.sliderShow : styles.sliderHide
           }

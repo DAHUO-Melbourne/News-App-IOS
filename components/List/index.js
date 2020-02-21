@@ -19,29 +19,24 @@ function Item({id, title, navigation, transferNewsID, src}) {
           transferNewsID(id);
           navigation.navigate('Details');
         }}
-        style={[
-          styles.item,
-          // eslint-disable-next-line eslint-comments/no-unused-disable
-        ]}>
+        style={[styles.item]}>
         <Image style={styles.stretch} source={{uri: src}} />
         <Text style={styles.title}>{title}</Text>
       </TouchableOpacity>
     );
-  } else
+  } else {
     return (
       <TouchableOpacity
         onPress={() => {
           transferNewsID(id);
           navigation.navigate('Details');
         }}
-        style={[
-          styles.item,
-          // eslint-disable-next-line eslint-comments/no-unused-disable
-        ]}>
+        style={[styles.item]}>
         <Image style={styles.stretch} source={{uri: ''}} />
         <Text style={styles.title}>{title}</Text>
       </TouchableOpacity>
     );
+  }
 }
 
 class List extends Component {
