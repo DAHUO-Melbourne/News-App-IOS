@@ -5,7 +5,7 @@ const defaultState = fromJS({
   date: '',
   id: '',
   bar: 'none',
-  font: 10,
+  font: 17,
 });
 export default (state = defaultState, action) => {
   switch (action.type) {

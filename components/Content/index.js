@@ -3,6 +3,7 @@ import {Text, ScrollView, StyleSheet, Dimensions, Slider} from 'react-native';
 import HTML from 'react-native-render-html';
 import {connect} from 'react-redux';
 import axios from 'axios';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 class Content extends Component {
   constructor(props) {
@@ -14,20 +15,22 @@ class Content extends Component {
         <ScrollView style={styles.content}>
           <Text style={styles.title}>{this.props.title}</Text>
           <Text style={styles.time}>{this.props.date}</Text>
-          <HTML
-            html={this.props.content}
-            ignoredStyles={['height', 'width']}
-            imagesMaxWidth={Dimensions.get('window').width - 40}
-            tagsStyles={{
-              p: {
-                fontSize: this.props.font,
-              },
-              img: {
-                marginTop: 20,
-                marginBottom: 20,
-              },
-            }}
-          />
+          <SafeAreaView style={styles.safeView}>
+            <HTML
+              html={this.props.content}
+              ignoredStyles={['height', 'width']}
+              imagesMaxWidth={Dimensions.get('window').width - 40}
+              tagsStyles={{
+                p: {
+                  fontSize: this.props.font,
+                },
+                img: {
+                  marginTop: 20,
+                  marginBottom: 20,
+                },
+              }}
+            />
+          </SafeAreaView>
         </ScrollView>
         <Slider
           step={1}
@@ -46,7 +49,7 @@ class Content extends Component {
     );
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     const data = {
       title: {
         rendered: 'loading',
@@ -85,7 +88,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     updateFontSize(data) {
-      //      alert(data);
       const action = {
         type: 'UPDATE_FONT_SIZE',
         font: data,
@@ -112,6 +114,9 @@ const mapDispatchToProps = dispatch => {
 };
 
 const styles = StyleSheet.create({
+  safeView: {
+    paddingBottom: 50,
+  },
   sliderShow: {
     position: 'relative',
     bottom: 300,
@@ -139,6 +144,7 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     paddingRight: 20,
     paddingTop: 20,
+    paddingBottom: 20,
   },
   title: {
     fontSize: 28,
@@ -147,13 +153,6 @@ const styles = StyleSheet.create({
   HTMLView: {
     fontWeight: '300',
     color: '#FF3366',
-  },
-  p: {
-    color: '#FF3366',
-    //    fontSize: this.props.font,
-  },
-  a: {
-    color: 'gray',
   },
 });
 
