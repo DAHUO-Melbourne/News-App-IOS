@@ -47,7 +47,7 @@ class List extends Component {
         'https://staging.allfin.com/wordpress/wp-json/wp/v2/posts?page=1&per_page=5',
       )
       .then(response => {
-        this.props.initListData(response.data);
+        this.props.initListData(response.data); //read data from backend and put them into stores
       });
   }
 
@@ -143,10 +143,10 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     initListData(data) {
-      dispatch(listActionCreators.initListData(data));
+      dispatch(listActionCreators.initListData(data)); //transfer data into store
     },
     transferNewsID(id) {
-      dispatch(listActionCreators.updateNewsId(id));
+      dispatch(listActionCreators.updateNewsId(id)); //transfer id of the news into content store
     },
   };
 };

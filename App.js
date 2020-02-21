@@ -31,6 +31,7 @@ class App extends Component {
           <Provider store={store}>
             <Stack.Navigator>
               <Stack.Screen name="Home" component={List} />
+              {/* navigation and transfer props into 2 different pages */}
               <Stack.Screen
                 name="Details"
                 initialParams={{value: this.state.value}}

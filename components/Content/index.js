@@ -16,6 +16,7 @@ class Content extends Component {
         <ScrollView style={styles.content}>
           <Text style={styles.title}>{this.props.title}</Text>
           <Text style={styles.time}>{this.timeFormated(this.props.date)}</Text>
+          {/* transfer the time string get from backend into correct format */}
           <SafeAreaView style={styles.safeView}>
             <HTML
               html={this.props.content}
@@ -37,7 +38,7 @@ class Content extends Component {
           step={1}
           maximumValue={100}
           onSlidingComplete={value => {
-            this.props.updateFontSize(value);
+            this.props.updateFontSize(value); //put value into store.
             this.props.navigation.goBack();
             this.props.navigation.navigate('Details');
           }}
@@ -77,7 +78,7 @@ class Content extends Component {
           this.props.id,
       )
       .then(response => {
-        this.props.updateDetailsData(response.data);
+        this.props.updateDetailsData(response.data); //read data by RESTful API by using id get from store
       });
   }
 }
@@ -96,7 +97,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     updateFontSize(data) {
-      dispatch(contentActionsCreators.updateFontSize(data));
+      dispatch(contentActionsCreators.updateFontSize(data)); //put value of slider into store, so that different details page could get the same fontsize
     },
     updateDetailsData(data) {
       dispatch(contentActionsCreators.updateDetailsDate(data));
