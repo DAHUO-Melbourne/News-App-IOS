@@ -14,7 +14,7 @@
         "@react-native-community/masked-view": "^0.1.6",
         "@react-navigation/native": "^5.0.5",
         "@react-navigation/stack": "^5.0.5",
-        "axios": "^0.19.2",
+        "axios": "^0.21.1",
         "create-react-native-module": "^0.14.0",
         "expo-constants": "^8.0.0",
         "immutable": "^4.0.0-rc.12",
