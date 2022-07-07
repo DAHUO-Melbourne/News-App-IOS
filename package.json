@@ -18,7 +18,7 @@
         "create-react-native-module": "^0.14.0",
         "expo-constants": "^8.0.0",
         "immutable": "^4.0.0-rc.12",
-        "moment": "^2.24.0",
+        "moment": "^2.29.4",
         "react": "16.9.0",
         "react-native": "0.61.5",
         "react-native-gesture-handler": "^1.6.0",
